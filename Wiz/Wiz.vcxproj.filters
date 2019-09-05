@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일\grid">
+      <UniqueIdentifier>{dedc3ad5-4411-41f5-97da-de1edad1f316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\grid">
+      <UniqueIdentifier>{3c0b8ad2-d9a5-4da6-a768-792b8d5e92b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\excel">
+      <UniqueIdentifier>{f9456ff5-361c-4085-89b5-77fa52b459d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\excel">
+      <UniqueIdentifier>{5dace8b9-7c74-4933-8c86-44b0c0429191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\page">
+      <UniqueIdentifier>{10fded19-0ef1-49ab-8d02-320af12af7c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\page">
+      <UniqueIdentifier>{dc52459f-71b2-488e-98e3-a74eaa1c46ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\util">
+      <UniqueIdentifier>{f697a573-b232-4120-9b05-092f2c4b89f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\util">
+      <UniqueIdentifier>{e79b4d49-bf8a-4069-9643-de0a5946b89a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\chart">
+      <UniqueIdentifier>{098740e2-6803-4c2f-992b-a8a3992ae578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\chart">
+      <UniqueIdentifier>{bf9c7ebc-2220-45ac-8212-5ae84f1cc0c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Wiz.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WizDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NewWizDialog.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NewWizPage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupPage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PrinterPage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CellRange.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCell.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCellBase.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDropTarget.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="InPlaceEdit.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleTip.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDC.h">
+      <Filter>헤더 파일\grid</Filter>
+    </ClInclude>
+    <ClInclude Include="XLAutomation.h">
+      <Filter>헤더 파일\excel</Filter>
+    </ClInclude>
+    <ClInclude Include="XLEzAutomation.h">
+      <Filter>헤더 파일\excel</Filter>
+    </ClInclude>
+    <ClInclude Include="UserGridData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Step1Page.h">
+      <Filter>헤더 파일\page</Filter>
+    </ClInclude>
+    <ClInclude Include="Step2Page.h">
+      <Filter>헤더 파일\page</Filter>
+    </ClInclude>
+    <ClInclude Include="GridUtil.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDlgUtil.h">
+      <Filter>헤더 파일\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Step3Page.h">
+      <Filter>헤더 파일\page</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeChart.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Step4Page.h">
+      <Filter>헤더 파일\page</Filter>
+    </ClInclude>
+    <ClInclude Include="ChartViewer.h">
+      <Filter>헤더 파일\chart</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Wiz.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WizDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NewWizDialog.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NewWizPage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupPage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PrinterPage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCell.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCellBase.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDropTarget.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="InPlaceEdit.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTip.cpp">
+      <Filter>소스 파일\grid</Filter>
+    </ClCompile>
+    <ClCompile Include="XLAutomation.cpp">
+      <Filter>소스 파일\excel</Filter>
+    </ClCompile>
+    <ClCompile Include="XLEzAutomation.cpp">
+      <Filter>소스 파일\excel</Filter>
+    </ClCompile>
+    <ClCompile Include="UserGridData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Step2Page.cpp">
+      <Filter>소스 파일\page</Filter>
+    </ClCompile>
+    <ClCompile Include="Step1Page.cpp">
+      <Filter>소스 파일\page</Filter>
+    </ClCompile>
+    <ClCompile Include="GridUtil.cpp">
+      <Filter>소스 파일\util</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDlgUtil.cpp">
+      <Filter>소스 파일\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Step3Page.cpp">
+      <Filter>소스 파일\page</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeChart.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Step4Page.cpp">
+      <Filter>소스 파일\page</Filter>
+    </ClCompile>
+    <ClCompile Include="ChartViewer.cpp">
+      <Filter>소스 파일\chart</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Wiz.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Wiz.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Wiz.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\hardware.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\ieset.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\plarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

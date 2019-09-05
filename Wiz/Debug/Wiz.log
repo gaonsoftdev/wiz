@@ -1,0 +1,9 @@
+﻿  Step1Page.cpp
+c:\users\wsbaek\source\repos\wiz\wiz\step1page.cpp(87): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wsbaek\source\repos\wiz\wiz\step1page.cpp(86): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wsbaek\source\repos\wiz\wiz\step1page.cpp(85): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wsbaek\source\repos\wiz\wiz\step1page.cpp(97): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\wsbaek\source\repos\wiz\wiz\step1page.cpp(96): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Wiz.cpp
+  코드를 생성하고 있습니다...
+  Wiz.vcxproj -> C:\Users\wsbaek\source\repos\Wiz\Debug\Wiz.exe
