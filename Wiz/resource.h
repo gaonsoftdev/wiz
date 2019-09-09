@@ -16,6 +16,10 @@
 #define IDB_GLOBE                       140
 #define IDW_STEP3                       140
 #define IDW_STEP4                       141
+#define IDW_STEP7                       144
+#define IDW_STEP8                       145
+#define IDW_STEP5                       146
+#define IDW_STEP6                       147
 #define Finish                          1000
 #define IDC_SHEETRECT                   1001
 #define ST_CAPTION                      1003
@@ -31,6 +35,15 @@
 #define IDC_CHART_PC                    1013
 #define IDC_FRAG_CURVE_PARAM_GRID       1014
 #define IDC_COMP_CURVE_COMBO            1015
+#define IDC_SEISMIC_SRC_LIST            1017
+#define IDC_DEL_SRC_BTN                 1018
+#define IDC_ADD_SRC_BTN                 1019
+#define ST_INTENSITY_CAP                1020
+#define ST_SEISMIC_SRC_CAP              1021
+#define IDC_INTENSITY_COMBO             1022
+#define IDC_RECURR_PERIOD_LIST          1023
+#define IDC_RECURR_PERIOD_CAP           1024
+#define ID_WIZIMPORT                    12327
 
 // Next default values for new objects
 // 
@@ -38,7 +51,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1017
+#define _APS_NEXT_CONTROL_VALUE         1022
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

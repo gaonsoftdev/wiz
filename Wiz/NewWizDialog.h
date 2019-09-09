@@ -24,13 +24,15 @@ public:
 
 	// Attributes
 private:
-	CUserData	m_DataStore;
+	CUserData			m_DataStore;
 
 public:
+	double				m_pageWidthRatio;
+	double				m_pageHeightRatio;
 
 protected:
-	CObList m_PageList; // this list of CNewWizPage objects
-	UINT m_nPlaceholderID; // control ID for the palceholder
+	CObList				m_PageList; // this list of CNewWizPage objects
+	UINT				m_nPlaceholderID; // control ID for the palceholder
 
 	// Operations
 public:
@@ -78,6 +80,8 @@ protected:
 
 	virtual void DoneWizardBack(bool IsBack);
 	virtual void DoneWizardNext(bool IsNext);
+	virtual CRect GetPageFrameRect();
+
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -86,6 +90,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CNewWizDialog)
 	afx_msg void OnDestroy();
+	afx_msg void OnWizardImport();
 	afx_msg void OnWizardFinish();
 	afx_msg void OnWizardBack();
 	afx_msg void OnWizardNext();

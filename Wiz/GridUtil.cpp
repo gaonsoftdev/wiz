@@ -10,7 +10,7 @@ CGridUtil::~CGridUtil()
 {
 }
 
-void CGridUtil::Init(CGridCtrl* grid, CStringArray* headers)
+void CGridUtil::Init(CGridCtrl* grid, const CStringArray& headers)
 {
 	grid->SetEditable(TRUE);
 	grid->SetListMode(TRUE);
@@ -18,7 +18,7 @@ void CGridUtil::Init(CGridCtrl* grid, CStringArray* headers)
 	grid->SetTextBkColor(RGB(0xFF, 0xFF, 0xFF));
 	grid->EnableScrollBar(ESB_ENABLE_BOTH, TRUE);
 	grid->SetRowCount(1);
-	grid->SetColumnCount(headers->GetSize() + 1);
+	grid->SetColumnCount(headers.GetSize() + 1);
 	grid->SetFixedRowCount(1);
 	grid->SetFixedColumnCount(0);
 
@@ -33,19 +33,19 @@ void CGridUtil::Init(CGridCtrl* grid, CStringArray* headers)
 			Item.strText = "";
 		}
 		else {
-			Item.strText = headers->GetAt(col - 1);
+			Item.strText = headers.GetAt(col - 1);
 		}
 		grid->SetItem(&Item);
 	}
 	grid->AutoSize();
 }
 
-void CGridUtil::Draw(CGridCtrl* grid, CUserGridData* gridData)
+void CGridUtil::Draw(CGridCtrl* grid, CUserGridData gridData)
 {
 	int m_nFixRows = 1;
 	int m_nFixCols = 1;
 	bool IsShowColumnHeader = true;
-	if (gridData->GetColumnHeaders()->IsEmpty()) {
+	if (gridData.GetColumnHeaders().IsEmpty()) {
 		IsShowColumnHeader = false;
 	}
 	grid->SetEditable(TRUE);
@@ -53,8 +53,8 @@ void CGridUtil::Draw(CGridCtrl* grid, CUserGridData* gridData)
 	grid->EnableDragAndDrop(TRUE);
 	grid->SetTextBkColor(RGB(0xFF, 0xFF, 0xFF));
 	grid->EnableScrollBar(ESB_ENABLE_BOTH, TRUE);
-	grid->SetRowCount(gridData->GetDataRow() + 1);
-	grid->SetColumnCount(gridData->GetDataCol() + 1);
+	grid->SetRowCount(gridData.GetDataRow() + 1);
+	grid->SetColumnCount(gridData.GetDataCol() + 1);
 	grid->SetFixedRowCount(m_nFixRows);
 	grid->SetFixedColumnCount(m_nFixCols);
 
@@ -72,7 +72,7 @@ void CGridUtil::Draw(CGridCtrl* grid, CUserGridData* gridData)
 					Item.strText = "";
 				}
 				else {
-					Item.strText = gridData->GetColumnHeaders()->GetAt(col - 1);
+					Item.strText = gridData.GetColumnHeaders().GetAt(col - 1);
 				}
 			}
 			else if (col < m_nFixCols) {
@@ -81,7 +81,7 @@ void CGridUtil::Draw(CGridCtrl* grid, CUserGridData* gridData)
 			}
 			else {
 				Item.nFormat = DT_CENTER | DT_VCENTER | DT_SINGLELINE;
-				Item.strText.Format(_T("%s"), gridData->GetData()[row - 1][col - 1]);
+				Item.strText.Format(_T("%s"), gridData.GetData()[row - 1][col - 1]);
 			}
 			grid->SetItem(&Item);
 		}

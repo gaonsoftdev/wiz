@@ -53,6 +53,7 @@ public:
 	virtual LRESULT OnWizardBack();
 	virtual LRESULT OnWizardNext();
 	virtual BOOL OnWizardFinish();
+	virtual void OnWizardImport();
 
 
 	// Overrides

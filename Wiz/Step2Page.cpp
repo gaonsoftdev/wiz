@@ -36,7 +36,6 @@ void CStep2Page::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CStep2Page, CNewWizPage)
 	//{{AFX_MSG_MAP(CStep2Page)
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_IMPORT_BTN, &CStep2Page::OnBnClickedImportBtn)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,19 +66,13 @@ LRESULT CStep2Page::OnWizardNext()
 	return 0;
 }
 
+
 void CStep2Page::OnSetActive()
 {
 	// Get page window size.
 	GetClientRect(&m_pageRect);
 
 	// Resize other windows for page window size.
-	GetDlgItem(IDC_IMPORT_BTN)->MoveWindow(
-		m_pageRect.right * 0.8 + DEFAULT_PADDING
-		, DEFAULT_PADDING
-		, m_pageRect.right * 0.15
-		, m_pageRect.bottom * 0.1
-	);
-
 	int gridWidth = m_pageRect.Width() * 0.7;
 	int gridHeight = m_pageRect.Height() * 0.25;
 	GetDlgItem(IDC_INPUT_GRID)->MoveWindow(
@@ -90,12 +83,12 @@ void CStep2Page::OnSetActive()
 	);
 
 	// Initialize grid.
-	if (GetDataStore()->m_compClsData.GetColumnHeaders()->IsEmpty()) {
+	if (GetDataStore()->m_compClsData.GetColumnHeaders().IsEmpty()) {
 		CStringArray columns;
 		columns.Add(_T("Class"));
 		columns.Add(_T("Description"));
 		GetDataStore()->m_compClsData.SetColumnHeaders(columns);
-		CGridUtil::Init(&m_Grid, &columns);
+		CGridUtil::Init(&m_Grid, columns);
 		CRect gridRect;
 		GetDlgItem(IDC_INPUT_GRID)->GetWindowRect(&gridRect);
 		CGridUtil::AutoFillColumns(&m_Grid, &gridRect);
@@ -107,17 +100,20 @@ void CStep2Page::OnSetActive()
 	}
 }
 
+
 BOOL CStep2Page::OnKillActive()
 {
 	return TRUE;
 }
+
 
 void CStep2Page::OnDraw(CDC* pDC)
 {
 
 }
 
-void CStep2Page::OnBnClickedImportBtn()
+
+void CStep2Page::OnWizardImport()
 {
 	CString filename;
 	CFileDlgUtil::GetExcelFile(filename);
@@ -141,14 +137,15 @@ void CStep2Page::OnBnClickedImportBtn()
 	}
 	XL.ReleaseExcel(); // ¿¢¼¿ ÆÄÀÏ ÇØÁ¦
 
-	GetDataStore()->m_compClsData.SetData(row - 1, 2, &valueArray);
+	GetDataStore()->m_compClsData.SetData(row - 1, 2, valueArray);
 	GetDataStore()->m_compClsData.SetDataFilename(filename);
 	DrawGrid();
 }
 
+
 void CStep2Page::DrawGrid() 
 {
-	CGridUtil::Draw(&m_Grid, &GetDataStore()->m_compClsData);
+	CGridUtil::Draw(&m_Grid, GetDataStore()->m_compClsData);
 	for (int row = 1; row < m_Grid.GetRowCount(); row++) {
 		for (int col = 1; col < m_Grid.GetColumnCount(); col++) {
 			GV_ITEM Item;

@@ -8,7 +8,11 @@
 #include "Step2Page.h"
 #include "Step3Page.h"
 #include "Step4Page.h"
-#include "SetupPage.h"
+#include "Step5Page.h"
+#include "Step6Page.h"
+#include "Step7Page.h"
+#include "Step8Page.h"
+
 #include "PrinterPage.h"
 
 #ifdef _DEBUG
@@ -80,8 +84,11 @@ BOOL CWizApp::InitInstance()
 	CStep2Page Step2Page;
 	CStep3Page Step3Page;
 	CStep4Page Step4Page;
+	CStep5Page Step5Page;
+	CStep6Page Step6Page;
+	CStep7Page Step7Page;
+	CStep8Page Step8Page;
 
-	CSetupPage SetupPage;
 	CPrinterPage PrinterPage;
 	
 	dlg.AddPage(&Step1Page, CStep1Page::IDD);
@@ -92,8 +99,14 @@ BOOL CWizApp::InitInstance()
 	dlg.AddStep(&Step3Page, _T("3 Definition of network component properties"));
 	dlg.AddPage(&Step4Page, CStep4Page::IDD);
 	dlg.AddStep(&Step4Page, _T("4 Seismic Faragility of Network Components"));
-	dlg.AddPage(&SetupPage, CSetupPage::IDD);
-	dlg.AddStep(&SetupPage, _T("5 Seismic hazard"));
+	dlg.AddPage(&Step5Page, CStep5Page::IDD);
+	dlg.AddStep(&Step5Page, _T("5 Seismic hazard"));
+	dlg.AddPage(&Step6Page, CStep6Page::IDD);
+	dlg.AddStep(&Step6Page, _T("6 Couple hazard to fragility"));
+	dlg.AddPage(&Step7Page, CStep7Page::IDD);
+	dlg.AddStep(&Step7Page, _T("7 Traffic carrying capacity - time and Repair Cost Ratio array"));
+	dlg.AddPage(&Step8Page, CStep8Page::IDD);
+	dlg.AddStep(&Step8Page, _T("8 Traffic scenarios"));
 	dlg.AddPage(&PrinterPage, CPrinterPage::IDD);
 	dlg.AddStep(&PrinterPage, _T("6 asdgfasdgasdg"));
 	

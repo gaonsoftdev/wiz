@@ -35,7 +35,6 @@ void CStep1Page::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CStep1Page, CNewWizPage)
 	//{{AFX_MSG_MAP(CStep1Page)
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_IMPORT_BTN, &CStep1Page::OnBnClickedImportBtn)
 	ON_WM_RBUTTONUP()
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
@@ -74,7 +73,7 @@ LRESULT CStep1Page::OnWizardNext()
 
 void CStep1Page::OnSetActive()
 {
-	m_pParent->SetTitle(_T("This is the wizard"));
+	m_pParent->SetTitle(_T("노후 도로시설 내진성능관리 의사결정시스템"));
 
 	// Get page window size.
 	GetClientRect(&m_pageRect);
@@ -83,19 +82,12 @@ void CStep1Page::OnSetActive()
 	GetDlgItem(IDC_MAP_PC)->MoveWindow(
 		DEFAULT_PADDING
 		, m_pageRect.bottom - (m_pageRect.bottom * 0.9)
-		, m_pageRect.right * 0.8
+		, m_pageRect.Width() - DEFAULT_PADDING * 2
 		, (m_pageRect.bottom * 0.9) - DEFAULT_PADDING
 	);
 	CRect rect;
 	GetDlgItem(IDC_MAP_PC)->GetWindowRect(rect);
 	ScreenToClient(rect);
-
-	GetDlgItem(IDC_IMPORT_BTN)->MoveWindow(
-		rect.right + DEFAULT_PADDING
-		, DEFAULT_PADDING
-		, m_pageRect.right * 0.15 - DEFAULT_PADDING
-		, m_pageRect.bottom * 0.1
-	);
 	
 	// Draw chart, if there is a shape data.
 	if (GetDataStore()->m_bOpenSHP) {
@@ -104,16 +96,18 @@ void CStep1Page::OnSetActive()
 	}
 }
 
+
 BOOL CStep1Page::OnKillActive()
 {
 	return TRUE;
 }
 
+
 void CStep1Page::OnDraw(CDC* pDC)
 {
 }
 
-void CStep1Page::OnBnClickedImportBtn()
+void CStep1Page::OnWizardImport()
 {
 	CString filename;
 	CFileDlgUtil::GetShapeFile(filename);

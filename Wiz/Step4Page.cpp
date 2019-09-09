@@ -19,14 +19,18 @@ CStep4Page::CStep4Page(CWnd* pParent /*=NULL*/)
 	: CNewWizPage(CStep4Page::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CStep4Page)
+	m_fragCurveParams = NULL;
 	//}}AFX_DATA_INIT
 }
 
 CStep4Page::~CStep4Page()
 {
 	delete m_chartView.getChart();
-	delete m_fragCurveParams;
-	m_fragCurveParams = NULL;
+	if (m_fragCurveParams != NULL) 
+	{
+		delete m_fragCurveParams;
+		m_fragCurveParams = NULL;
+	}
 }
 
 void CStep4Page::DoDataExchange(CDataExchange* pDX)
@@ -44,7 +48,6 @@ void CStep4Page::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CStep4Page, CNewWizPage)
 	//{{AFX_MSG_MAP(CStep4Page)
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_IMPORT_BTN, &CStep4Page::OnBnClickedImportBtn)
 	ON_WM_PAINT()
 	ON_CBN_SELENDOK(IDC_COMP_CURVE_COMBO, &CStep4Page::OnCbnSelendokCompCurveCombo)
 END_MESSAGE_MAP()
@@ -101,7 +104,7 @@ void CStep4Page::OnSetActive()
 	ScreenToClient(m_fragCurveParamGridRect);
 
 	// Initialize fragility curve parameters grid.
-	if (GetDataStore()->m_fragCurveParamData.GetColumnHeaders()->IsEmpty()) {
+	if (GetDataStore()->m_fragCurveParamData.GetColumnHeaders().IsEmpty()) {
 		CStringArray columns;
 		columns.Add(_T("Class"));
 		columns.Add(_T("DS1 IMm"));
@@ -114,7 +117,7 @@ void CStep4Page::OnSetActive()
 		columns.Add(_T("DS4 ¥â"));
 
 		GetDataStore()->m_fragCurveParamData.SetColumnHeaders(columns);
-		CGridUtil::Init(&m_fragCurveParamGrid, &columns);
+		CGridUtil::Init(&m_fragCurveParamGrid, columns);
 		CGridUtil::AutoFillColumns(&m_fragCurveParamGrid, &m_fragCurveParamGridRect);
 	}
 	if (GetDataStore()->m_fragCurveParamData.IsRead()) {
@@ -122,16 +125,19 @@ void CStep4Page::OnSetActive()
 	}
 }
 
+
 BOOL CStep4Page::OnKillActive()
 {
 	return TRUE;
 }
 
+
 void CStep4Page::OnDraw(CDC* pDC)
 {
 }
 
-void CStep4Page::OnBnClickedImportBtn()
+
+void CStep4Page::OnWizardImport()
 {
 	CString filename;
 	CFileDlgUtil::GetExcelFile(filename);
@@ -155,7 +161,7 @@ void CStep4Page::OnBnClickedImportBtn()
 	}
 	XL.ReleaseExcel(); // ¿¢¼¿ ÆÄÀÏ ÇØÁ¦
 
-	GetDataStore()->m_fragCurveParamData.SetData(row - 1, GetDataStore()->m_fragCurveParamData.GetColumnHeaders()->GetSize(), &valueArray);
+	GetDataStore()->m_fragCurveParamData.SetData(row - 1, GetDataStore()->m_fragCurveParamData.GetColumnHeaders().GetSize(), valueArray);
 	GetDataStore()->m_fragCurveParamData.SetDataFilename(filename);
 	DrawFragCurveParamGrid();
 
@@ -169,9 +175,10 @@ void CStep4Page::OnBnClickedImportBtn()
 	}
 }
 
+
 void CStep4Page::DrawFragCurveParamGrid()
 {
-	CGridUtil::Draw(&m_fragCurveParamGrid, &GetDataStore()->m_fragCurveParamData);
+	CGridUtil::Draw(&m_fragCurveParamGrid, GetDataStore()->m_fragCurveParamData);
 	for (int row = 1; row < m_fragCurveParamGrid.GetRowCount(); row++) {
 		for (int col = 1; col < m_fragCurveParamGrid.GetColumnCount(); col++) {
 			GV_ITEM Item;
@@ -222,6 +229,7 @@ void CStep4Page::DrawFragCurveParamGrid()
 	}
 }
 
+
 void CStep4Page::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
@@ -230,6 +238,7 @@ void CStep4Page::OnPaint()
 
 	drawChart(&m_chartView);
 }
+
 
 //
 // Draw the chart and display it in the given viewer

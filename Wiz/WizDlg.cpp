@@ -24,7 +24,11 @@ void CWizDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 
-	//DDX_Control(pDX, IDC_STEP_NAV_LIST, m_stepNavList);
+	/*DDX_Control(pDX, ID_WIZBACK, m_backButton);
+	DDX_Control(pDX, ID_WIZNEXT, m_nextButton);
+	DDX_Control(pDX, IDCANCEL, m_cancelButton);
+	DDX_Control(pDX, ID_WIZFINISH, m_finishButton);
+	DDX_Control(pDX, ID_WIZIMPORT, m_importButton);*/
 }
 
 BEGIN_MESSAGE_MAP(CWizDlg, CNewWizDialog)
@@ -45,6 +49,7 @@ BOOL CWizDlg::OnInitDialog()
 	m_pFinishButton = (CButton*)GetDlgItem(ID_WIZFINISH);
 	m_pNextButton = (CButton*)GetDlgItem(ID_WIZNEXT);
 	m_pBackButton = (CButton*)GetDlgItem(ID_WIZBACK);
+	m_pImportButton = (CButton*)GetDlgItem(ID_WIZIMPORT);
 	m_pStepNavList = (CListCtrl*)GetDlgItem(IDC_STEP_NAV_LIST);
 	m_pStepNavList->SetBkColor(RGB(243, 243, 243));
 	CFont font;
@@ -95,73 +100,81 @@ void CWizDlg::OnSize(UINT nType, int cx, int cy)
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	// According to frame size resize components
 	if (GetDlgItem(ID_WIZFINISH) != NULL) {
-		CRect r, finishRect, cancelRect, nextRect, backRect;
+		CRect r, finishRect, cancelRect, nextRect, backRect, importRect;
+
 		GetClientRect(r);
-		
-		int padding = 10;
+
 		int stepButtonHeight = r.bottom / 20;
 		int stepButtonWidth = r.right / 10;
-
 		int stepNavWidth = r.right / 8;
-		
-		// Step buttons
-		m_pCancelButton->SetWindowPos(NULL
-			, r.right - stepButtonWidth - padding
-			, r.bottom - stepButtonHeight - padding
-			, stepButtonWidth
-			, stepButtonHeight
-			, NULL);
-		m_pCancelButton->GetWindowRect(cancelRect);
-		ScreenToClient(cancelRect);
 
-		m_pFinishButton->SetWindowPos(NULL
-			, r.right - (r.right - cancelRect.left) - stepButtonWidth - padding
-			, r.bottom - stepButtonHeight - padding
-			, stepButtonWidth
-			, stepButtonHeight
-			, NULL);
-		m_pFinishButton->GetWindowRect(finishRect);
-		ScreenToClient(finishRect);
-
-		m_pNextButton->SetWindowPos(NULL
-			, r.right - (r.right - finishRect.left) - stepButtonWidth - padding
-			, r.bottom - stepButtonHeight - padding
-			, stepButtonWidth
-			, stepButtonHeight
-			, NULL);
-		m_pNextButton->GetWindowRect(nextRect);
-		ScreenToClient(nextRect);
-		
-		m_pBackButton->SetWindowPos(NULL
-			, r.right - (r.right - nextRect.left) - stepButtonWidth - padding
-			, r.bottom - stepButtonHeight - padding
-			, stepButtonWidth
-			, stepButtonHeight
-			, NULL);
-		m_pBackButton->GetWindowRect(backRect);
-		ScreenToClient(backRect);
-
-		// content frame
+		// nav frame
 		CRect navRect;
-		m_pStepNavList->SetWindowPos(NULL
-			, r.left + padding
-			, r.top + padding
+		m_pStepNavList->MoveWindow(
+			r.left + DEFAULT_PADDING
+			, r.top + DEFAULT_PADDING
 			, stepNavWidth
-			, r.bottom - (padding * 3 + stepButtonHeight)
-			, NULL);
-		m_pStepNavList->GetWindowRect(navRect);
+			, r.bottom - (DEFAULT_PADDING * 3 + stepButtonHeight)
+		);
+		m_pStepNavList->GetWindowRect(&navRect);
 		ScreenToClient(navRect);
 
 		// content frame
-		CRect frameRect;
-		GetDlgItem(IDC_SHEETRECT)->SetWindowPos(NULL
-			, navRect.right
-			, r.top + padding
-			, r.right - navRect.Width() - (padding * 2)
-			, r.bottom - (padding * 3 + stepButtonHeight)
-			, NULL);
-		GetDlgItem(IDC_SHEETRECT)->GetWindowRect(frameRect);
-		ScreenToClient(frameRect);
+		GetDlgItem(IDC_SHEETRECT)->MoveWindow(
+			navRect.right
+			, r.top + DEFAULT_PADDING
+			, r.right - navRect.Width() - (DEFAULT_PADDING * 2)
+			, r.bottom - (DEFAULT_PADDING * 3 + stepButtonHeight)
+		);
+		GetDlgItem(IDC_SHEETRECT)->GetWindowRect(&m_pageFrameRect);
+		ScreenToClient(m_pageFrameRect);
+
+		
+		// Step buttons
+		m_pCancelButton->MoveWindow(
+			r.right - stepButtonWidth - DEFAULT_PADDING
+			, r.bottom - stepButtonHeight - DEFAULT_PADDING
+			, stepButtonWidth
+			, stepButtonHeight
+		);
+		m_pCancelButton->GetWindowRect(&cancelRect);
+		ScreenToClient(cancelRect);
+
+		m_pFinishButton->MoveWindow(
+			r.right - (r.right - cancelRect.left) - stepButtonWidth - DEFAULT_PADDING
+			, r.bottom - stepButtonHeight - DEFAULT_PADDING
+			, stepButtonWidth
+			, stepButtonHeight
+		);
+		m_pFinishButton->GetWindowRect(&finishRect);
+		ScreenToClient(finishRect);
+
+		m_pNextButton->MoveWindow(
+			r.right - (r.right - finishRect.left) - stepButtonWidth - DEFAULT_PADDING
+			, r.bottom - stepButtonHeight - DEFAULT_PADDING
+			, stepButtonWidth
+			, stepButtonHeight
+		);
+		m_pNextButton->GetWindowRect(&nextRect);
+		ScreenToClient(nextRect);
+		
+		m_pBackButton->MoveWindow(
+			r.right - (r.right - nextRect.left) - stepButtonWidth - DEFAULT_PADDING
+			, r.bottom - stepButtonHeight - DEFAULT_PADDING
+			, stepButtonWidth
+			, stepButtonHeight
+		);
+		m_pBackButton->GetWindowRect(&backRect);
+		ScreenToClient(backRect);
+		
+		m_pImportButton->MoveWindow(
+			m_pageFrameRect.left
+			, r.bottom - stepButtonHeight - DEFAULT_PADDING
+			, stepButtonWidth
+			, stepButtonHeight
+		);
+		m_pImportButton->GetWindowRect(&importRect);
+		ScreenToClient(importRect);
 	}
 }
 
@@ -290,6 +303,7 @@ void CWizDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 	CNewWizDialog::OnDrawItem(nIDCtl, lpDrawItemStruct);
 }
 
+
 void CWizDlg::OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct) {
 	if (IDC_STEP_NAV_LIST == nIDCtl) {
 		lpMeasureItemStruct->itemHeight = 40;
@@ -314,6 +328,13 @@ void CWizDlg::DoneWizardNext(bool IsNext) {
 		m_pStepNavList->SetItem(activeIndex - 1, 0, LVIF_TEXT, _T("N"), 0, 0, 0, NULL);
 	}
 }
+
+
+CRect CWizDlg::GetPageFrameRect()
+{
+	return m_pageFrameRect;
+}
+
 
 void CWizDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {

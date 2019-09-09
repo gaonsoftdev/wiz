@@ -44,11 +44,11 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CStep1Page)
 	virtual BOOL OnInitDialog();
+	virtual void OnWizardImport();
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedImportBtn();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnPaint();
 };

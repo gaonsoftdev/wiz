@@ -28,18 +28,20 @@ protected:
 	HICON			m_hIcon;
 
 	CStringList		m_StepLabelList;
-	CListCtrl*		m_pStepNavList; // step navigator
 	CRect			m_prevNavItemRect;
+	CRect			m_pageFrameRect;
 
+	CButton*		m_pBackButton;
 	CButton*		m_pCancelButton;
 	CButton*		m_pFinishButton;
 	CButton*		m_pNextButton;
-	CButton*		m_pBackButton;
-
+	CButton*		m_pImportButton;
+	CListCtrl*		m_pStepNavList; // step navigator
 	// 생성된 메시지 맵 함수
 	virtual BOOL OnInitDialog();
 	virtual void DoneWizardBack(bool IsBack);
 	virtual void DoneWizardNext(bool IsNext);
+	virtual CRect GetPageFrameRect();
 	DECLARE_MESSAGE_MAP()
 public:
 	void AddStep(CNewWizPage* pPage, CString label);
@@ -49,4 +51,5 @@ public:
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+
 };

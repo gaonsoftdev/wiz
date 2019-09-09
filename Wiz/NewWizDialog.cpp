@@ -47,6 +47,7 @@ void CNewWizDialog::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CNewWizDialog, CDialog)
 	//{{AFX_MSG_MAP(CNewWizDialog)
 	ON_WM_DESTROY()
+	ON_BN_CLICKED(ID_WIZIMPORT, OnWizardImport)
 	ON_BN_CLICKED(ID_WIZFINISH, OnWizardFinish)
 	ON_BN_CLICKED(ID_WIZBACK, OnWizardBack)
 	ON_BN_CLICKED(ID_WIZNEXT, OnWizardNext)
@@ -157,8 +158,16 @@ BOOL CNewWizDialog::ActivatePage(CNewWizPage* pPage)
 	ASSERT(pWnd != NULL);
 	ASSERT(IsWindow(pWnd->m_hWnd) != FALSE);
 
+	CRect oldRect;
+	pPage->GetWindowRect(&oldRect);
+	ScreenToClient(&oldRect);
+	
 	pWnd->GetWindowRect(&rect);
 	ScreenToClient(&rect);
+
+	m_pageWidthRatio = fabs((double)rect.Width() / (double)oldRect.Width());
+	m_pageHeightRatio = fabs((double)oldRect.Width() / (double)rect.Width());
+
 	// page full size
 	pPage->SetWindowPos(NULL, rect.left, rect.top, rect.Width(), rect.Height(), SWP_NOACTIVATE);
 	pPage->EnableWindow(TRUE);
@@ -296,6 +305,18 @@ void CNewWizDialog::SetNextPage()
 /////////////////////////////////////////////////////////////
 //  CNewWizDlg Button Processing
 
+void CNewWizDialog::OnWizardImport()
+{
+	CNewWizPage* pPage;
+
+	pPage = GetActivePage();
+
+	// can we kill the active page?
+	if (!pPage->OnKillActive()) return;
+
+	pPage->OnWizardImport();
+}
+
 
 // user pressed the Finish button
 void CNewWizDialog::OnWizardFinish()
@@ -331,8 +352,6 @@ void CNewWizDialog::OnWizardFinish()
 	// close the dialog and return ID_WIZFINISH
 	CDialog::EndDialog(ID_WIZFINISH);
 }
-
-
 
 
 void CNewWizDialog::OnWizardBack()
@@ -613,6 +632,11 @@ void CNewWizDialog::DoneWizardNext(bool IsNext) {
 	if (IsNext) {
 		int activeIndex = GetActiveIndex();
 	}
+}
+
+CRect CNewWizDialog::GetPageFrameRect()
+{
+	return NULL;
 }
 
 CUserData* CNewWizDialog::GetDataStore() 

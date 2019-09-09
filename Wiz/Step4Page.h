@@ -53,11 +53,11 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CStep4Page)
 	virtual BOOL OnInitDialog();
+	virtual void OnWizardImport();
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedImportBtn();
 	afx_msg void OnPaint();
 	afx_msg void OnCbnSelendokCompCurveCombo();
 };

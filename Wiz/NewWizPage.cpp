@@ -141,7 +141,6 @@ void CNewWizPage::OnSetActive()
 }
 
 
-
 // refer to CPropertyPage class members for a description of this function
 BOOL CNewWizPage::OnQueryCancel()
 {
@@ -160,6 +159,11 @@ LRESULT CNewWizPage::OnWizardBack()
 }
 
 
+void CNewWizPage::OnWizardImport()
+{
+}
+
+
 // refer to CPropertyPage class members for a description of this function
 // return -1 to prevent changing pages
 // to move to a page other than the next one, return the 
@@ -170,12 +174,12 @@ LRESULT CNewWizPage::OnWizardNext()
 }
 
 
-
 // refer to CPropertyPage class members for a description of this function
 BOOL CNewWizPage::OnWizardFinish()
 {
 	return TRUE;
 }
+
 
 CUserData* CNewWizPage::GetDataStore()
 {

@@ -11,7 +11,6 @@ CUserData::CUserData()
 	CUserGridData m_step2GridData1();
 	CUserGridData m_networkCompData();
 	CUserGridData m_fragCurveParamData();
-
 	TRACE("Construnt UserData\n");
 }
 

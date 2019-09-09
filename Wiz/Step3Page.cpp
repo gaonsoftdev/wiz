@@ -44,7 +44,6 @@ void CStep3Page::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CStep3Page, CNewWizPage)
 	//{{AFX_MSG_MAP(CStep3Page)
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_IMPORT_BTN, &CStep3Page::OnBnClickedImportBtn)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
@@ -91,13 +90,6 @@ void CStep3Page::OnSetActive()
 	GetClientRect(&m_pageRect);
 
 	// Resize other windows for page window size.
-	GetDlgItem(IDC_IMPORT_BTN)->MoveWindow(
-		m_pageRect.right * 0.8 + DEFAULT_PADDING
-		, DEFAULT_PADDING
-		, m_pageRect.right * 0.15
-		, m_pageRect.bottom * 0.1
-	);
-
 	int gridHeight = m_pageRect.Height() * 0.25;
 	GetDlgItem(IDC_NETWORK_COMP_GRID)->MoveWindow(
 		DEFAULT_PADDING
@@ -126,7 +118,7 @@ void CStep3Page::OnSetActive()
 	GetDlgItem(IDC_MAP_PC)->ShowWindow(TRUE);
 	
 	// Initialize component class grid
-	if (GetDataStore()->m_compClsData.GetColumnHeaders()->IsEmpty()) {
+	if (GetDataStore()->m_compClsData.GetColumnHeaders().IsEmpty()) {
 		CGridUtil::Init(&m_compClassGrid, GetDataStore()->m_compClsData.GetColumnHeaders());
 		CGridUtil::AutoFillColumns(&m_compClassGrid, &m_compClassGridRect);
 	}
@@ -136,7 +128,7 @@ void CStep3Page::OnSetActive()
 	}
 
 	// Initialize network component grid.
-	if (GetDataStore()->m_networkCompClsData.GetColumnHeaders()->IsEmpty()) {
+	if (GetDataStore()->m_networkCompClsData.GetColumnHeaders().IsEmpty()) {
 		CStringArray columns;
 		columns.Add(_T("Network component ID"));
 		columns.Add(_T("Class"));
@@ -148,7 +140,7 @@ void CStep3Page::OnSetActive()
 		columns.Add(_T("Fundamental Period(sec)"));
 
 		GetDataStore()->m_networkCompClsData.SetColumnHeaders(columns);
-		CGridUtil::Init(&m_networkCompGrid, &columns);
+		CGridUtil::Init(&m_networkCompGrid, columns);
 		CGridUtil::AutoFillColumns(&m_networkCompGrid, &m_networkCompGridRect);
 	}
 	// Fill data to grid, if there is a data.
@@ -174,7 +166,7 @@ void CStep3Page::OnDraw(CDC* pDC)
 }
 
 
-void CStep3Page::OnBnClickedImportBtn()
+void CStep3Page::OnWizardImport()
 {
 	CString filename;
 	CFileDlgUtil::GetExcelFile(filename);
@@ -198,7 +190,7 @@ void CStep3Page::OnBnClickedImportBtn()
 	}
 	XL.ReleaseExcel(); // ¿¢¼¿ ÆÄÀÏ ÇØÁ¦
 
-	GetDataStore()->m_networkCompClsData.SetData(row - 1, 8, &valueArray);
+	GetDataStore()->m_networkCompClsData.SetData(row - 1, 8, valueArray);
 	GetDataStore()->m_networkCompClsData.SetDataFilename(filename);
 	DrawNetworkCompGrid();
 }
@@ -206,7 +198,7 @@ void CStep3Page::OnBnClickedImportBtn()
 
 void CStep3Page::DrawCompClassGrid()
 {
-	CGridUtil::Draw(&m_compClassGrid, &GetDataStore()->m_compClsData);
+	CGridUtil::Draw(&m_compClassGrid, GetDataStore()->m_compClsData);
 	for (int row = 1; row < m_compClassGrid.GetRowCount(); row++) {
 		for (int col = 1; col < m_compClassGrid.GetColumnCount(); col++) {
 			GV_ITEM Item;
@@ -231,7 +223,7 @@ void CStep3Page::DrawCompClassGrid()
 
 void CStep3Page::DrawNetworkCompGrid()
 {
-	CGridUtil::Draw(&m_networkCompGrid, &GetDataStore()->m_networkCompClsData);
+	CGridUtil::Draw(&m_networkCompGrid, GetDataStore()->m_networkCompClsData);
 	for (int row = 1; row < m_networkCompGrid.GetRowCount(); row++) {
 		for (int col = 1; col < m_networkCompGrid.GetColumnCount(); col++) {
 			GV_ITEM Item;
